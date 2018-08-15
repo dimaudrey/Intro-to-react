@@ -6,10 +6,12 @@
   <body>
 
     <div id="app"></div>
+    <div id="time"></div>
+    <div id="bio"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
     <script type="text/babel">
 
@@ -17,17 +19,41 @@
           constructor(props){
             super(props);
             this.state = {
-              number: 1
+              number: 1,
+              name: "Audrey DiMichele"
             }
           }
         render() {
           return (
             <div>
               <img src={this.props.image} alt="Bloc Logo"/>
-              <h2>Current program: {this.props.label}</h2>
-                <h3>Current week: {this.state.number}</h3>
+              <h1>Bloc Student Name: {this.state.name}</h1>
+                <h2>Current program: {this.props.label}</h2>
+                  <h3>Current week: {this.state.number}</h3>
               <p>Current Date: {this.props.date.toLocaleDateString()}</p>
+              <p>Students local Time: {this.props.date.toLocaleTimeString()}</p>
             </div>
+          );
+        }
+      }
+
+
+      class Bio extends React.Component {
+        constructor(student) {
+          super(student);
+          this.state = {
+           location: "CA",
+           age: 29,
+           favoriteDrink: "Coffee"
+         }
+      }
+    render() {
+      return (
+        <div>
+          <p>Living in: {this.state.location}</p>
+          <p>Age: {this.state.age}</p>
+          <p>Favorite Study Drink: {this.state.favoriteDrink}</p>
+        </div>
           );
         }
       }
@@ -46,6 +72,12 @@
           date={info.date}
           image={info.image}/>,document.getElementById('app')
       );
+
+     ReactDOM.render(
+       <Bio />,
+        document.getElementById('bio')
+  );
+
 
     </script>
   </body>
